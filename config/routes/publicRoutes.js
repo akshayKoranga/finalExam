@@ -3,7 +3,7 @@ const publicRoutes = {
   // 'POST /register': 'UserController.register', // alias for POST /user
   // 'POST /login': 'UserController.login',
   // 'POST /validate': 'UserController.validate',
-  // 'GET /users': 'UserController.getAll',
+  'GET /users': 'UserController.getAll',
   // 'PATCH /users': 'UserController.editUser',
   // 'GET /runseeds': 'UserController.runseeds',
   
@@ -11,8 +11,8 @@ const publicRoutes = {
   // 'POST /role': 'RoleController.create',
   // 'GET /role': 'RoleController.getAll',
 
-  // 'POST /market': 'MarketController.create',
-  // 'GET /market': 'MarketController.getAll',
+  'POST /market': 'HospitalController.create',
+  'GET /market': 'HospitalController.getAll',
 
   // 'POST /country': 'CountryController.create',
   // 'GET /country': 'CountryController.getAll',

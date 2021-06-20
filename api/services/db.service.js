@@ -45,7 +45,7 @@ const dbService = (environment, migrate) => {
       if (migrate) {
         return startMigrateTrue();
       }
-      // return startMigrateFalse();
+      return startMigrateFalse();
       return 1;
     } catch (err) {
       return errorDBStart(err);

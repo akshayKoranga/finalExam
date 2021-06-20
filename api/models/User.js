@@ -47,7 +47,7 @@ const User = sequelize.define('User', {
   status: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: 1
+    defaultValue: true
   },
   status_reason: {
     type: Sequelize.STRING,

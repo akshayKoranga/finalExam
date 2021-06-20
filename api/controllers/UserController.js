@@ -1,9 +1,6 @@
 const User = require('../models/User');
 const authService = require('../services/auth.service');
 const Role = require('../models/Role');
-const Country = require('../models/Country');
-const Market = require('../models/Market');
-const Scope = require('../models/Scope');
 const UserCountry = require('../models/User_country');
 const DevSeed   = require('../db/seeds/dev.seed');
 

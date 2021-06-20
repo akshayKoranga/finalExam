@@ -1,6 +1,6 @@
 const Role = require('../../models/Role');
-const Country = require('../../models/Country');
-const Market = require('../../models/Market');
+// const Country = require('../../models/Country');
+const Hospital = require('../../models/Hospital');
 const Scope = require('../../models/Scope');
 
 
@@ -24,16 +24,16 @@ const DevSeed = () => {
     }]
     const roleInsert = await Role.bulkCreate(roles);
 
-    let markets = [{
-        market_name : 'India',
+    let hospitals = [{
+        hospital_name : 'Hopital default',
     },{
-        market_name : 'USA',
+        hospital_name : 'Max hospital',
     },{
-        market_name : 'Europe',
+        hospital_name : 'AIMS',
     },{
-        market_name : 'China',
+        hospital_name : 'PGI',
     }]
-   const marketinsert = await Market.bulkCreate(markets);
+   const hospitalinsert = await Hospital.bulkCreate(hospitals);
 
     let countries = [{
         country_name : 'India',
@@ -63,7 +63,7 @@ const DevSeed = () => {
         country_name : 'China',
         market_id:4
     }]
-    const countryInsert = await Country.bulkCreate(countries);
+    // const countryInsert = await Country.bulkCreate(countries);
 
 
     let scope= [{

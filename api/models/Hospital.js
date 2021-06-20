@@ -4,10 +4,10 @@ const sequelize = require('../../config/database');
 const hooks = {
 };
 
-const tableName = 'markets';
+const tableName = 'Hospitals';
 
-const Market = sequelize.define('market', {
-  market_name: {
+const Hospital = sequelize.define('hospital', {
+  hospital_name: {
     type: Sequelize.STRING,
   },
   created_by: {
@@ -19,7 +19,7 @@ const Market = sequelize.define('market', {
   status: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
-    defaultValue: 1
+    defaultValue: true
   },
   status_reason: {
     type: Sequelize.STRING,
@@ -27,10 +27,10 @@ const Market = sequelize.define('market', {
 }, { hooks, tableName });
 
 // eslint-disable-next-line
-Market.prototype.toJSON = function () {
+Hospital.prototype.toJSON = function () {
   const values = Object.assign({}, this.get());
 
   return values;
 };
 
-module.exports = Market;
+module.exports = Hospital;
