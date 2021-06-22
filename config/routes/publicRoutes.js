@@ -11,8 +11,20 @@ const publicRoutes = {
   // 'POST /role': 'RoleController.create',
   // 'GET /role': 'RoleController.getAll',
 
-  'POST /market': 'HospitalController.create',
-  'GET /market': 'HospitalController.getAll',
+  'POST /company': 'CompanyController.create',
+  'GET /company': 'CompanyController.getAll',
+  'PUT /company': 'CompanyController.edit',
+  'DELETE /company': 'CompanyController.deleteCompany',
+
+  'POST /booking': 'BookingController.create',
+  'GET /booking': 'BookingController.getAll',
+  'PUT /booking': 'BookingController.edit',
+  'DELETE /booking': 'BookingController.deleteBooking',
+
+  'POST /hospital': 'HospitalController.create',
+  'GET /hospital': 'HospitalController.getAll',
+  'PUT /hospital': 'HospitalController.edit',
+  'DELETE /hospital': 'HospitalController.deleteHospital',
 
   // 'POST /country': 'CountryController.create',
   // 'GET /country': 'CountryController.getAll',

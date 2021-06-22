@@ -4,19 +4,19 @@ const sequelize = require('../../config/database');
 const hooks = {
 };
 
-const tableName = 'Hospitals';
+const tableName = 'Company';
 
-const Hospital = sequelize.define('hospital', {
-  hospital_name: {
+const Company = sequelize.define('company', {
+  company_name: {
     type: Sequelize.STRING,
   },
-  hospital_website: {
+  company_address: {
     type: Sequelize.STRING,
   },
-  hospital_bed: {
+  company_cylinder: {
     type: Sequelize.INTEGER,
   },
-  hospital_price: {
+  company_price: {
     type: Sequelize.INTEGER,
   },
   created_by: {
@@ -36,10 +36,10 @@ const Hospital = sequelize.define('hospital', {
 }, { hooks, tableName });
 
 // eslint-disable-next-line
-Hospital.prototype.toJSON = function () {
+Company.prototype.toJSON = function () {
   const values = Object.assign({}, this.get());
 
   return values;
 };
 
-module.exports = Hospital;
+module.exports = Company;

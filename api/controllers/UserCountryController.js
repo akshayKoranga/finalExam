@@ -25,10 +25,34 @@ const UserCountryController = () => {
     }
   };
 
+  const deleteOP = async (req, res) => {
+    try {
+      const roles = await UserCountry.findAll();
+
+      return res.status(200).json({  roles });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ msg: 'Internal server error' });
+    }
+  };
+
+  const update = async (req, res) => {
+    try {
+      const roles = await UserCountry.findAll();
+
+      return res.status(200).json({  roles });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ msg: 'Internal server error' });
+    }
+  };
+
 
   return {
     create,
     getAll,
+    deleteOP,
+    update
   };
 };
 
