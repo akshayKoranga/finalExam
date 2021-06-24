@@ -17,7 +17,38 @@ const BookingController = () => {
 
   const getAll = async (req, res) => {
     try {
-      const Bookings = await Booking.findAll();
+      const { Op } = require("sequelize");
+
+      let Bookings
+      console.log(req.query.username,'req.query.username')
+      if(req.query.search) {
+        console.log('asdasdas')
+           Bookings = await Booking.findAll(
+            {
+              where:
+              {
+                // username:req.query.search,
+                [Op.or]: [ {
+                    user_email: req.query.search
+                  },{
+                    username: req.query.search
+                  }]
+              }    
+            })
+            //  where {username : req.query.username, $or: [
+            // {
+            //   user_email: 
+            //     {
+            //         $eq: req.query.email
+            //     }
+            // }
+            //   } ]
+            // });
+        
+      } else {
+       Bookings = await Booking.findAll();
+      }
+     
       // let allBooking = []
       // for (const element of Bookings){
       //   let Booking = element.dataValues
@@ -48,7 +79,8 @@ const BookingController = () => {
   const deleteBooking = async (req, res) => {
     try {
         const { query } = req;
-        const id = query.id
+        const id = query
+        .id
         let booking = await Booking.findOne({where: {id: id}})
 
        booking.destroy();
