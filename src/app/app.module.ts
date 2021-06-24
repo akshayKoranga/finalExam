@@ -20,6 +20,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AboutCovidComponent } from './about-covid/about-covid.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 
+import { ApiService } from './services/api.services';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './in-memory-data.service';
+
+
 @NgModule({
   entryComponents: [TableComponent, DialogOverviewExampleDialog],
   declarations: [
@@ -40,12 +46,17 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   ApiService, { dataEncapsulation: false }
+    // ),
     DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    ApiService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

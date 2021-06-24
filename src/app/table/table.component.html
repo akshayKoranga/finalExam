@@ -3,7 +3,7 @@
 
 <div class="margin-bottom-xs">
   <button class="reset btn-gradient-1" (click)="openAboutHospital()"> About hospitals</button>
-  <button class="reset btn-gradient-1" (click)="openAddHospital()">+ Add Hospital</button>
+  <button class="reset btn-gradient-1" (click)="addHospital()">+ Add Hospital</button>
   
 </div>
 
@@ -26,28 +26,30 @@
           <th>Hospital Name</th>
           <th>About Hospital</th>
           <th>Bed Avalabilty</th>
+          <th>Price</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td data-title="ID">1</td>
-          <td data-title="Name">AIMS</td>
-          <td data-title="Link">
-            <a href="https://www.aiims.edu/en.html" target="_blank">AIMS website</a>
+        <tr *ngFor="let hospital of hospitals; let idx = index" >
+          <td data-title="ID">{{hospital.id}}</td>
+          <td data-title="Name">{{hospital.hospital_name}}</td>
+          <td data-title="Link" *ngIf="hospital.hospital_website != '' ">
+            <a href={{hospital.hospital_website}} target="_blank">{{hospital.hospital_name}}</a>
           </td>
-          <td data-title="Status">25 Beds</td>
-          <td data-title="Delete">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+          <td data-title="Status">{{hospital.hospital_bed}}</td>
+          <td data-title="Status">{{hospital.hospital_price}}</td>
+          <td data-title="Delete ">
+            <mat-icon class="iconClass edit" aria-hidden="false" aria-label="Example home icon" (click)=editHospital(hospital)>edit</mat-icon>
            </td>
           <td data-title="Delete">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">delete_outline</mat-icon>
+            <mat-icon  class="iconClass delete" aria-hidden="false" aria-label="Example home icon" (click)=deleteHospital(hospital)>delete_outline</mat-icon>
            </td>
-
-          
         </tr>
-        <tr>
+
+
+        <!-- <tr>
           <td data-title="ID">2</td>
           <td data-title="Name">Dr. Susheela Tiwari Government Hospital</td>
           <td data-title="Link">
@@ -102,23 +104,8 @@
             <a href="https://codepen.io/zavoloklom/pen/yaozl" target="_blank">helpline and about forties</a>
           </td>
           <td data-title="Status">11 beds</td>
-        </tr>
-        <!-- <tr>
-            <td data-title="ID">9</td>
-            <td data-title="Name">Material Design Email Template</td>
-            <td data-title="Link">
-              <a href="https://codepen.io/zavoloklom/pen/qEVqzx" target="_blank">Codepen</a>
-            </td>
-            <td data-title="Status">Completed</td>
-          </tr>
-          <tr>
-            <td data-title="ID">10</td>
-            <td data-title="Name">Material Design Animation Timing (old one)</td>
-            <td data-title="Link">
-              <a href="https://codepen.io/zavoloklom/pen/Jbrho" target="_blank">Codepen</a>
-            </td>
-            <td data-title="Status">14 beds</td>
-          </tr> -->
+        </tr> -->
+
       </tbody>
     </table>
   </div>
