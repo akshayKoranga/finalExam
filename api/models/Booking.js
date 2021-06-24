@@ -14,10 +14,10 @@ const Booking = sequelize.define('booking', {
     type: Sequelize.STRING,
   },
   booking_type: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
   booking_status: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
   created_by: {
     type: Sequelize.STRING,

@@ -5,7 +5,7 @@ const publicRoutes = {
   // 'POST /validate': 'UserController.validate',
   'GET /users': 'UserController.getAll',
   // 'PATCH /users': 'UserController.editUser',
-  // 'GET /runseeds': 'UserController.runseeds',
+  'GET /runseeds': 'UserController.runseeds',
   
 
   // 'POST /role': 'RoleController.create',
