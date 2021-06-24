@@ -5,10 +5,10 @@ const HospitalController = () => {
   const create = async (req, res) => {
     const { body } = req;
       try {
-        const Hospital = await Hospital.create({body
-        });
+        const HospitalInsert = await Hospital.create(body
+        );
 
-        return res.status(200).json({ Hospital });
+        return res.status(200).json({  HospitalInsert });
       } catch (err) {
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
@@ -49,8 +49,8 @@ const HospitalController = () => {
 
   const deleteHospital = async (req, res) => {
     try {
-        const { body } = req;
-        const id = body.id
+        const { query } = req;
+        const id = query.id
         let hospital = await Hospital.findOne({where: {id: id}})
 
        hospital.destroy();

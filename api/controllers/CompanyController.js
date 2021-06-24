@@ -5,10 +5,10 @@ const CompanyController = () => {
   const create = async (req, res) => {
     const { body } = req;
       try {
-        const Company = await Company.create({body
-        });
+        const CompanyInsert = await Company.create(body
+        );
 
-        return res.status(200).json({ Company });
+        return res.status(200).json({  CompanyInsert });
       } catch (err) {
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
@@ -47,8 +47,8 @@ const CompanyController = () => {
 
   const deleteCompany = async (req, res) => {
     try {
-        const { body } = req;
-        const id = body.id
+        const { query } = req;
+        const id = query.id
         let company = await Company.findOne({where: {id: id}})
 
        company.destroy();

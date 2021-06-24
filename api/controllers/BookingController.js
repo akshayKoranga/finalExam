@@ -5,10 +5,10 @@ const BookingController = () => {
   const create = async (req, res) => {
     const { body } = req;
       try {
-        const Booking = await Booking.create({body
-        });
+        const BookingInsert = await Booking.create(body
+        );
 
-        return res.status(200).json({ Booking });
+        return res.status(200).json({ BookingInsert });
       } catch (err) {
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
@@ -47,8 +47,8 @@ const BookingController = () => {
 
   const deleteBooking = async (req, res) => {
     try {
-        const { body } = req;
-        const id = body.id
+        const { query } = req;
+        const id = query.id
         let booking = await Booking.findOne({where: {id: id}})
 
        booking.destroy();
