@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { ToastrService } from 'ngx-toastr';
 
 import { ApiService } from '../services/api.services';
+import { disableDebugTools } from '@angular/platform-browser';
 
 
 
@@ -39,6 +40,7 @@ export class TableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("hhhauai")
     this.getAllHospital()
   }
 
@@ -53,12 +55,8 @@ export class TableComponent implements OnInit {
 
     this.api.getAllHospital().subscribe(
       (response: any) => {
-        console.log("yeh hospitals vala hai", response);
-
-        console.log(response['Hospitals']);
         this.hospitals = response['Hospitals'];
         // this.hospitals = data['Hospitals'].siteList;
-        console.log(this.hospitals, "all sites")
       }, error => {
       })
 
@@ -187,7 +185,8 @@ export class DialogContentExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: warningDailogData , 
-    public api: ApiService) { }
+    public api: ApiService,
+    private toastr: ToastrService) { }
 
     
   hospitalName: any;
@@ -219,6 +218,7 @@ export class DialogContentExampleDialog {
     this.api.deleteHospital(this.hospitalId).subscribe(
       (response: any) => {
         console.log("yeh hospitals vala hai", response);
+        this.toastr.error('sucessfullt deleted');
         this.onNoClick();
       }, error => {
       })

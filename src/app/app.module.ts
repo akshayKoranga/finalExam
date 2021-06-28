@@ -23,6 +23,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ApiService } from './services/api.services';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { SearchUserComponent } from './search-user/search-user.component';
 // import { InMemoryDataService } from './in-memory-data.service';
 
 
@@ -38,7 +39,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
     CylindersComponent,
     SignInComponent,
     AboutCovidComponent,
-    AboutusComponent
+    AboutusComponent,
+    SearchUserComponent
   ],
   imports: [
     BrowserModule,
