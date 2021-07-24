@@ -1,8 +1,11 @@
 import { Component, HostListener, Inject, ElementRef, OnInit, ViewChild, Injectable } from '@angular/core';
 import { FormBuilder, FormControl, NgForm } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-// import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+
+import { ApiService } from '../services/api.services';
+
 
 
 
@@ -22,15 +25,45 @@ export class TableComponent implements OnInit {
 
   constructor(
     private router: Router,
-    // protected eventService: EventService,
-    // public dialog: MatDialog,
-    // private _scheduleservice: ScheduleService,
-    // public api: ApiService,
+    public dialog: MatDialog,
+    public api: ApiService,
     private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
+    console.log("hhhauai")
+    this.getAllHospital()
   }
+
+  // public hospitals: Array ;
+  public hospitals: any = [];
+
+
+  getAllHospital() {
+
+    // this.api.getAllHospital().subscribe(
+    //   success => {
+
+    this.api.getAllHospital().subscribe(
+      (response: any) => {
+        this.hospitals = response['Hospitals'];
+        // this.hospitals = data['Hospitals'].siteList;
+      }, error => {
+      })
+
+  }
+
+  // openCylinderBooking(): void {
+  //   const dialogRef = this.dialog.open(cylinderBookingDialog, {
+  //     width: '750px',
+  //     data: { name: this.name, animal: this.animal }
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     this.animal = result;
+  //   });
+  // }
 
 
   // async openFilters() {
@@ -65,4 +98,36 @@ export class TableComponent implements OnInit {
   //   dialogRef.afterClosed().subscribe(result => {
   //   });
   // }
+}
+
+
+@Component({
+  selector: 'booking-dailog',
+  templateUrl: 'bookBed.component.html',
+  styleUrls: ['./table.component.css']
+})
+export class bedBookingDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<bedBookingDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+
+  createEvent(form: NgForm) {
+
+
+    const name = form.value.name;
+    const website = form.value.website;
+    const bed = form.value.bed;
+    const body = {
+      'name' : name,
+      'website': website,
+      'bed': bed
+    };
+    console.log("form -->", body)
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

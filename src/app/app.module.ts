@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
 import { HeaderComponent } from './header/header.component';
-import { TableComponent } from './table/table.component';
-import { CylinderComponent , cylinderBookingDialog } from './cylinder/cylinder.component';
+import { TableComponent , bedBookingDialog } from './table/table.component';
+import { CylinderComponent , cylinderBookingDialog  } from './cylinder/cylinder.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { AboutCovidComponent } from './about-covid/about-covid.component';
 import { SearchbookedComponent } from './searchbooked/searchbooked.component';
@@ -26,6 +27,7 @@ import { cylinderModule } from './cylinder/cylinder-module';
     TableComponent,
     CylinderComponent,
     cylinderBookingDialog,
+    bedBookingDialog,
     AboutusComponent,
     AboutCovidComponent,
     SearchbookedComponent
@@ -34,7 +36,8 @@ import { cylinderModule } from './cylinder/cylinder-module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,       
+    FormsModule,     
+    // MatFormFieldModule,  
     ReactiveFormsModule,
     cylinderModule,
     ToastrModule.forRoot()
