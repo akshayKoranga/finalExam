@@ -14,7 +14,7 @@ import { ApiService } from './services/api.services';
 
 import { HeaderComponent } from './header/header.component';
 import { TableComponent , bedBookingDialog } from './table/table.component';
-import { CylinderComponent    } from './cylinder/cylinder.component';
+import { CylinderComponent , CylinderBookingDialog   } from './cylinder/cylinder.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { AboutCovidComponent } from './about-covid/about-covid.component';
 import { SearchbookedComponent } from './searchbooked/searchbooked.component';
@@ -30,6 +30,7 @@ import { CovidFormComponent } from './covid-form/covid-form.component';
     TableComponent,
     CylinderComponent,
     bedBookingDialog,
+    CylinderBookingDialog,
     AboutusComponent,
     AboutCovidComponent,
     SearchbookedComponent,

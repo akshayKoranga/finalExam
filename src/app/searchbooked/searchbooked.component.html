@@ -1,15 +1,51 @@
 <div class="container searchDabba">
     <div class="search-box">
-       <input type="text" class="search-input" placeholder="Search..">
+       <input type="text" class="search-input" placeholder="Search.."
+       [(ngModel)]='searchUser'>
  
-       <button class="search-button">
+       <button class="search-button"  (click)=searchBooking()>
          <i class="fas fa-search"></i>
        </button>
     </div>
  </div>
 
-
-<div class="wrapper-cards">
+ <div id="demo" *ngIf="isShow">
+    
+         
+   <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+   <div class="table-responsive-vertical shadow-z-1">
+     <!-- Table starts here -->
+     <table id="table" class="table table-hover table-mc-light-blue">
+       <thead>
+         <tr>
+           <th >ID</th>
+           <th>Booking type</th>
+           <!-- <th>About Hospital</th>
+           <th>Bed Avalabilty</th>
+           <th>Price</th> -->
+           <th></th>
+           <!-- <th>Delete</th> -->
+         </tr> 
+       </thead>
+       <tbody>
+         <tr *ngFor="let hospital of hospitals; let idx = index" >
+            <td data-title="ID">{{hospital.id}}</td>
+           <td data-title="ID">{{hospital.booking_type}}</td>
+           <!-- <td data-title="Name">{{hospital.hospital_name}}</td>
+           <td data-title="Link" *ngIf="hospital.hospital_website != '' ">
+             <a href={{hospital.hospital_website}} target="_blank">{{hospital.hospital_name}}</a>
+           </td>
+           <td data-title="Status">{{hospital.hospital_bed}}</td>
+           <td data-title="Status">{{hospital.hospital_price}}</td> -->
+         </tr>
+ 
+       </tbody>
+     </table>
+   </div>
+ 
+ </div>
+<!-- card booking -->
+<!-- <div class="wrapper-cards">
  
     <div class="card">
        <div class="card__header">
@@ -25,12 +61,7 @@
        <ul class="card__list">
           <li class="card__item">status </li>
           <li class="card__item">price $20 </li>
-          <!-- <li class="card__item">Access to All our rooms</li> -->
        </ul>
-       <!-- <div class="card__tag">
-          <span class="card__price">$20</span>
-          <span class="card__time">/day</span>
-       </div> -->
     </div>
 
     <div class="card">
@@ -49,12 +80,5 @@
           <li class="card__item">price $20 </li>
 
        </ul>
-       <!-- <div class="card__tag">
-          <span class="card__price">$380</span>
-          <span class="card__time">/month</span>
-       </div>
-       <button class="card__btn">
-          Choose
-       </button> -->
     </div>
- </div>
+ </div> -->

@@ -6,8 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../services/api.services';
 
 
-export interface  bookDialogData {
-  hospital: any;
+export interface bookDialogData {
+  company: any;
   name: any;
 }
 
@@ -35,13 +35,12 @@ export class CylinderComponent implements OnInit {
     this.getAllCompanies()
   }
 
-  companies : any
+  companies: any
 
   name = "string"
   animal = "animal"
 
-  getAllCompanies(){
-    console.log("idhar pe aara hai")
+  getAllCompanies() {
     this.api.getCylinder().subscribe(
       (response: any) => {
         this.companies = response['Companys'];
@@ -61,76 +60,80 @@ export class CylinderComponent implements OnInit {
     });
   }
 
-  bookCylinder (hospital : any){
-    // const dialogRef = this.dialog.open(CylinderBookingDialog, {
-    //   width: '550px',
-    //   data: {
-    //     hospital: hospital,
-    //     name: "this.filters"
-
-    //   }
-    // });
+  bookCylinder(company: any) {
+    console.log("company -->" , company)
+    const dialogRef = this.dialog.open(CylinderBookingDialog, {
+      width: '550px',
+      data: {
+        company: company,
+        name: "this.filters"
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getAllCompanies()
+    });
   }
 
 }
 
-// @Component({
-//   selector: 'booking-dailog',
-//   templateUrl: 'bookBed.component.html',
-//   styleUrls: ['./table.component.css']
-// })
-// export class CylinderBookingDialog {
+@Component({
+  selector: 'booking-dailog',
+  templateUrl: 'bookCylinder.component.html',
+  styleUrls: ['./cylinder.component.css']
+})
+export class CylinderBookingDialog {
 
-//   constructor(
-//     public dialogRef: MatDialogRef<CylinderBookingDialog>,
-//     @Inject(MAT_DIALOG_DATA) public data: bookDialogData,
-//     private toastr: ToastrService, 
-//     public api: ApiService,) { }
+  constructor(
+    public dialogRef: MatDialogRef<CylinderBookingDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: bookDialogData,
+    private toastr: ToastrService, 
+    public api: ApiService,) { }
 
-//     hospital : any
-//     ngOnInit(): void {
-//       console.log(this.data , "hhjshshs")
-//       this.hospital = this.data.hospital
-//     }
-//     BookBedObj  =  {
-//       "user_email": "",
-//       "username": "",
-//       "booking_type": "Cylinder",
-//       "booking_status": "Pending"
-//     }
+    company : any
+    ngOnInit(): void {
+      console.log(this.data , "hhjshshs")
+      this.company = this.data.company
+    }
+    BookCylinderObj  =  {
+      "user_email": "",
+      "username": "",
+      "booking_type": "Cylinder",
+      "booking_status": "Pending",
+      "booking_type_id": this.data.company.id,
+    }
 
-//   createEvent(form: NgForm) {
-//     const name = form.value.name;
-//     const website = form.value.website;
-//     const bed = form.value.bed;
-//     const body = {
-//       'name' : name,
-//       'website': website,
-//       'bed': bed
-//     };
-//     console.log("form -->", body)
-//   }
+  createEvent(form: NgForm) {
+    const name = form.value.name;
+    const website = form.value.website;
+    const bed = form.value.bed;
+    const body = {
+      'name' : name,
+      'website': website,
+      'bed': bed
+    };
+    console.log("form -->", body)
+  }
 
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-//   bookHospital(){
-//     console.log(this.BookBedObj ,"<----")
-//     this.bedBook()
-//   }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  bookHospital(){
+    console.log(this.BookCylinderObj ,"<----")
+    this.bedBook()
+  }
 
-//   bedBook() {
-//     this.api.bookBed(this.BookBedObj).subscribe(
-//       (response: any) => {
-//         console.log("response -->" , response)
-//         // this.hospitals = response['Hospitals'];
-//         this.onNoClick()
-//       }, error => {
-//       })
+  bedBook() {
+    this.api.bookBed(this.BookCylinderObj).subscribe(
+      (response: any) => {
+        console.log("response -->" , response)
+        // this.hospitals = response['Hospitals'];
+        this.onNoClick()
+      }, error => {
+      })
 
-//   }
+  }
 
-// }
+}
 
 @Component({
   selector: 'cylinder-booking-dailog',
@@ -150,7 +153,7 @@ export class cylinderBookingDialog {
     const website = form.value.website;
     const bed = form.value.bed;
     const body = {
-      'name' : name,
+      'name': name,
       'website': website,
       'bed': bed
     };
