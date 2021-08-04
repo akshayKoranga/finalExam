@@ -6,9 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 
 import { ApiService } from '../services/api.services';
 
-
-
-
 export interface  bookDialogData {
   hospital: any;
   name: any;
@@ -34,19 +31,19 @@ export class TableComponent implements OnInit {
     console.log("hhhauai")
     this.getAllHospital()
   }
+  
   bookHospital (hospital : any){
-
     const dialogRef = this.dialog.open(bedBookingDialog, {
       width: '550px',
       data: {
         hospital: hospital,
         name: "this.filters"
-
       }
+      
     });
-
-   
-
+    dialogRef.afterClosed().subscribe(result => {
+      this.getAllHospital()
+    });
   }
 
   public hospitals: any = [];
@@ -90,7 +87,8 @@ export class bedBookingDialog {
       "username": "",
       "booking_type": "Bed",
       // "booking_type": "Cylinder",
-      "booking_status": "Pending"
+      "booking_status": "Pending",
+      "booking_type_id": this.data.hospital.id,
     }
 
   createEvent(form: NgForm) {

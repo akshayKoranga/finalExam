@@ -1,9 +1,15 @@
 import { Component, HostListener, Inject, ElementRef, OnInit, ViewChild, Injectable } from '@angular/core';
 import { FormBuilder, FormControl, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../services/api.services';
 
+
+export interface  bookDialogData {
+  hospital: any;
+  name: any;
+}
 
 
 export interface DialogData {
@@ -20,18 +26,28 @@ export class CylinderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    // protected eventService: EventService,
     public dialog: MatDialog,
-    // private _scheduleservice: ScheduleService,
-    // public api: ApiService,
+    public api: ApiService,
     private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
+    this.getAllCompanies()
   }
+
+  companies : any
 
   name = "string"
   animal = "animal"
+
+  getAllCompanies(){
+    console.log("idhar pe aara hai")
+    this.api.getCylinder().subscribe(
+      (response: any) => {
+        this.companies = response['Companys'];
+      }, error => {
+      })
+  }
 
   openCylinderBooking(): void {
     const dialogRef = this.dialog.open(cylinderBookingDialog, {
@@ -45,7 +61,76 @@ export class CylinderComponent implements OnInit {
     });
   }
 
+  bookCylinder (hospital : any){
+    // const dialogRef = this.dialog.open(CylinderBookingDialog, {
+    //   width: '550px',
+    //   data: {
+    //     hospital: hospital,
+    //     name: "this.filters"
+
+    //   }
+    // });
+  }
+
 }
+
+// @Component({
+//   selector: 'booking-dailog',
+//   templateUrl: 'bookBed.component.html',
+//   styleUrls: ['./table.component.css']
+// })
+// export class CylinderBookingDialog {
+
+//   constructor(
+//     public dialogRef: MatDialogRef<CylinderBookingDialog>,
+//     @Inject(MAT_DIALOG_DATA) public data: bookDialogData,
+//     private toastr: ToastrService, 
+//     public api: ApiService,) { }
+
+//     hospital : any
+//     ngOnInit(): void {
+//       console.log(this.data , "hhjshshs")
+//       this.hospital = this.data.hospital
+//     }
+//     BookBedObj  =  {
+//       "user_email": "",
+//       "username": "",
+//       "booking_type": "Cylinder",
+//       "booking_status": "Pending"
+//     }
+
+//   createEvent(form: NgForm) {
+//     const name = form.value.name;
+//     const website = form.value.website;
+//     const bed = form.value.bed;
+//     const body = {
+//       'name' : name,
+//       'website': website,
+//       'bed': bed
+//     };
+//     console.log("form -->", body)
+//   }
+
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+//   bookHospital(){
+//     console.log(this.BookBedObj ,"<----")
+//     this.bedBook()
+//   }
+
+//   bedBook() {
+//     this.api.bookBed(this.BookBedObj).subscribe(
+//       (response: any) => {
+//         console.log("response -->" , response)
+//         // this.hospitals = response['Hospitals'];
+//         this.onNoClick()
+//       }, error => {
+//       })
+
+//   }
+
+// }
 
 @Component({
   selector: 'cylinder-booking-dailog',

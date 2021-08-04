@@ -27,15 +27,6 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-
-  /**
-   * Get dashboards
-   */
-  // getAllHospital() {
-  //     return this.http.get(this.baseUrl + 'getAllDashboard', ).map((res: Response) => res)
-
-  // }
-
   getAllHospital() {
     console.log("get all hospitalsss")
     requestConfig.headers['Content-Type'] = contentType.json;
@@ -66,30 +57,14 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'company', data, requestConfig)
   }
 
-  getCylinder(data: any) {
+  getCylinder() {
     requestConfig.headers['Content-Type'] = contentType.json;
     return this.http.get(this.baseUrl + 'company')
   }
 
-  // signin(data: any) {
-
-  //     const body = new URLSearchParams();
-  //     body.append('email', data.email);
-  //     body.append('password', data.password);
-  //     // return this.http.post(this.BaseUrl + 'account/login/',this.httpService.login
-  //     return this.http.post(this.global.serverUrl + this.httpService.login,
-  //     body.toString(),
-  //     {headers: this.global.urlHeaders} )
-  //     .map(
-  //         (response: Response) => {
-  //            const output = response.json();
-  //            return output;
-  //         }
-  //     ).catch(
-  //         (error: Response) => {
-  //             return Observable.throw('Something went wrong');
-  //         }
-  //     );
-  //    }
+  searchBooking(name : any) {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.get(this.baseUrl + 'booking?search=' + name)
+  }
 
 }
