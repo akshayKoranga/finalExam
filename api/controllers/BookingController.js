@@ -22,6 +22,7 @@ const BookingController = () => {
               const Companyupdate = await Company.update({company_cylinder : Companys.company_cylinder -1},{
                 where: { id: body.booking_type_id }
               });
+              
             } else {
               status = 0
               msg = {msg : "No more Cylinder Availabale " };
@@ -42,9 +43,16 @@ const BookingController = () => {
           })
           if(Hospitals) {
             if(Hospitals.hospital_bed > 0) {
-              const Company = await Company.update({hospital_bed : Hospitals.hospital_bed -1},{
+              const HospitalUpdate = await Hospital.update({hospital_bed : Hospitals.hospital_bed -1},{
                 where: { id: body.booking_type_id }
               });
+              // const Hospitalnew = await Hospital.findOne({
+              //   where:
+              //   {
+              //     id:body.booking_type_id,
+              //   }    
+              // })
+              // console.log('asdasdas',Hospitalnew);process.exit()
             } else {
               status = 0
               msg = {msg : "No More Bed Availabale" };
