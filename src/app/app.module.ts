@@ -20,6 +20,7 @@ import { AboutCovidComponent } from './about-covid/about-covid.component';
 import { SearchbookedComponent } from './searchbooked/searchbooked.component';
 
 import { cylinderModule } from './cylinder/cylinder-module';
+import { CovidFormComponent } from './covid-form/covid-form.component';
 
 @NgModule({
   entryComponents: [CylinderComponent],
@@ -31,7 +32,8 @@ import { cylinderModule } from './cylinder/cylinder-module';
     bedBookingDialog,
     AboutusComponent,
     AboutCovidComponent,
-    SearchbookedComponent
+    SearchbookedComponent,
+    CovidFormComponent
   ],
   imports: [
     BrowserModule,

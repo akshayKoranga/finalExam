@@ -10,6 +10,7 @@ import { SearchbookedComponent } from './searchbooked/searchbooked.component';
 import { AboutCovidComponent } from './about-covid/about-covid.component';
 
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { CovidFormComponent } from './covid-form/covid-form.component'
 
 
 
@@ -22,6 +23,9 @@ const routes: Routes = [
   { path: 'booking', component: SearchbookedComponent},
   { path: 'aboutus', component: AboutusComponent},
   { path: 'about', component: AboutCovidComponent},
+  { path: 'form', component: CovidFormComponent},
+
+  
   
   
 
