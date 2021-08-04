@@ -1,14 +1,75 @@
 const Booking = require('../models/Booking');
+const Hospital = require('../models//Hospital');
+const Company = require('../models/Company');
 // const Booking = require('../models/Booking');
 
 const BookingController = () => {
   const create = async (req, res) => {
     const { body } = req;
       try {
-        const BookingInsert = await Booking.create(body
-        );
+        let status = 1
+        let msg = {}
+        if(body.booking_type == 'Cylinder') {
 
-        return res.status(200).json({ BookingInsert });
+      const Companys = await Company.findOne({
+        where:
+        {
+          id:body.booking_type_id,
+        }    
+      })
+          if(Companys) {
+            if(Companys.company_cylinder > 0) {
+              const Companyupdate = await Company.update({company_cylinder : Companys.company_cylinder -1},{
+                where: { id: body.booking_type_id }
+              });
+            } else {
+              status = 0
+              msg = {msg : "No more Cylinder Availabale " };
+            }
+
+            
+          } else {
+            status = 0
+            msg = {msg : "Invalid Comapany id" };
+          }
+
+        } else if(body.booking_type == 'Bed') {
+          const Hospitals = await Hospital.findOne({
+            where:
+            {
+              id:body.booking_type_id,
+            }    
+          })
+          if(Hospitals) {
+            if(Hospitals.hospital_bed > 0) {
+              const Company = await Company.update({hospital_bed : Hospitals.hospital_bed -1},{
+                where: { id: body.booking_type_id }
+              });
+            } else {
+              status = 0
+              msg = {msg : "No More Bed Availabale" };
+            }
+
+          } else {
+            status = 0
+            msg = {msg : "Invalid Hospital id" };
+          }
+        } else {
+          status = 0
+          msg = {msg : "Invalid booking type" };
+        }
+        if(status) {
+          // delete body.booking_type_id
+          // console.log(body);process.exit()
+          const BookingInsert = await Booking.create(body
+            );
+    
+            return res.status(200).json({ BookingInsert });
+        } else {
+          return res.status(200).json({ msg });
+
+        }
+      
       } catch (err) {
         console.log(err);
         return res.status(500).json({ msg: 'Internal server error' });
@@ -66,7 +127,7 @@ const BookingController = () => {
   const edit = async (req, res) => {
     try {
         const { body } = req;
-        const Booking = await Booking.update(body,{
+        const BookingUpdate = await Booking.update(body,{
           where: { id: body.id },
         });
       return res.status(200).json({ msg: 'Booking Updated' });

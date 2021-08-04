@@ -35,7 +35,7 @@ const CompanyController = () => {
   const edit = async (req, res) => {
     try {
         const { body } = req;
-        const Company = await Company.update(body,{
+        const CompanyUpdate = await Company.update(body,{
           where: { id: body.id },
         });
       return res.status(200).json({ msg: 'Company Updated' });

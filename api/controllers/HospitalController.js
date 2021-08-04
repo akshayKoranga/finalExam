@@ -37,7 +37,7 @@ const HospitalController = () => {
         const { body } = req;
         const id = body.id
         delete body.hospital_id;
-        const Hospital = await Hospital.update(body,{
+        const HospitalUpdate = await Hospital.update(body,{
           where: { id: body.id },
         });
       return res.status(200).json({ msg: 'Hospital Updated' });
