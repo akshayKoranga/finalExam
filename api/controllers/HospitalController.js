@@ -17,7 +17,11 @@ const HospitalController = () => {
 
   const getAll = async (req, res) => {
     try {
-      const Hospitals = await Hospital.findAll();
+      const Hospitals = await Hospital.findAll({
+        order: [
+            ['id', 'ASC'],
+        ],
+    });
       // let allHospital = []
       // for (const element of Hospitals){
       //   let Hospital = element.dataValues

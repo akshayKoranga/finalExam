@@ -102,7 +102,10 @@ const BookingController = () => {
                   },{
                     username: req.query.search
                   }]
-              }    
+              } ,   
+              order: [
+                ['id', 'ASC'],
+            ],
             })
             //  where {username : req.query.username, $or: [
             // {
@@ -115,7 +118,11 @@ const BookingController = () => {
             // });
         
       } else {
-       Bookings = await Booking.findAll();
+       Bookings = await Booking.findAll({
+        order: [
+            ['id', 'ASC'],
+        ],
+    });
       }
      
       // let allBooking = []

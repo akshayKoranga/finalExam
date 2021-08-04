@@ -17,7 +17,12 @@ const CompanyController = () => {
 
   const getAll = async (req, res) => {
     try {
-      const Companys = await Company.findAll();
+      const Companys = await Company.findAll({
+        order: [
+            ['id', 'ASC'],
+        ],
+    });
+
       // let allCompany = []
       // for (const element of Companys){
       //   let Company = element.dataValues
