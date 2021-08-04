@@ -1,11 +1,15 @@
-<h1 mat-dialog-title>Hello hospital</h1>
+<h1 mat-dialog-title>Book bed in {{hospital.hospital_name}}</h1>
 <div mat-dialog-content>
-  <p>number of hospital</p>
+  <p>Email : </p>
   <mat-form-field>
-    <input matInput >
+    <input matInput  [(ngModel)]='BookBedObj.user_email'>
   </mat-form-field>
-</div>
+  <p>username : </p>
+  <mat-form-field>
+    <input matInput [(ngModel)]='BookBedObj.username' >
+  </mat-form-field>
+</div> 
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">cancel</button>
+  <button mat-button (click)="bookHospital()" cdkFocusInitial>Ok</button>
 </div>

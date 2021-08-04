@@ -9,9 +9,9 @@ import { ApiService } from '../services/api.services';
 
 
 
-export interface DialogData {
-  animal: string;
-  name: string;
+export interface  bookDialogData {
+  hospital: any;
+  name: any;
 }
 
 
@@ -34,70 +34,36 @@ export class TableComponent implements OnInit {
     console.log("hhhauai")
     this.getAllHospital()
   }
+  bookHospital (hospital : any){
 
-  // public hospitals: Array ;
+    const dialogRef = this.dialog.open(bedBookingDialog, {
+      width: '550px',
+      data: {
+        hospital: hospital,
+        name: "this.filters"
+
+      }
+    });
+
+   
+
+  }
+
   public hospitals: any = [];
 
 
   getAllHospital() {
 
-    // this.api.getAllHospital().subscribe(
-    //   success => {
-
+    console.log("idhar pe aara hai")
     this.api.getAllHospital().subscribe(
       (response: any) => {
         this.hospitals = response['Hospitals'];
-        // this.hospitals = data['Hospitals'].siteList;
       }, error => {
       })
 
   }
 
-  // openCylinderBooking(): void {
-  //   const dialogRef = this.dialog.open(cylinderBookingDialog, {
-  //     width: '750px',
-  //     data: { name: this.name, animal: this.animal }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     this.animal = result;
-  //   });
-  // }
-
-
-  // async openFilters() {
-  //   //-------
-  //   // let sendAreaTags = {
-  //   //   allAreaTags: this.allAreaTagsList,
-  //   //   filterAreaTags: this.filteredAreaTags
-  //   // }
-  //   // console.log(' this.filters', this.filters)
-  //   const dialogRef = this.dialog.open(editProfile, {
-  //     panelClass: 'schedule-filter-dialog',
-  //     width: '600px',
-  //     maxHeight: '80vh',
-  //     data: {
-  //       date: "this.todayDate",
-  //       filters: "this.filters"
-
-  //     }
-  //   });
-  //   await dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       console.log("data closed with result")
-  //     }
-  //   });
-  // }
-
-  // openFilters() {
-  //   const dialogRef = this.dialog1.open(bufferpopup, {
-  //     width: '450px',
-  //     data: { title: "15 mins is Buffer time. This schedule is less than 15 mins and will be counted as 0 hrs in time sheet", }
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //   });
-  // }
+ 
 }
 
 
@@ -110,11 +76,24 @@ export class bedBookingDialog {
 
   constructor(
     public dialogRef: MatDialogRef<bedBookingDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: bookDialogData,
+    private toastr: ToastrService, 
+    public api: ApiService,) { }
+
+    hospital : any
+    ngOnInit(): void {
+      console.log(this.data , "hhjshshs")
+      this.hospital = this.data.hospital
+    }
+    BookBedObj  =  {
+      "user_email": "",
+      "username": "",
+      "booking_type": "Bed",
+      // "booking_type": "Cylinder",
+      "booking_status": "Pending"
+    }
 
   createEvent(form: NgForm) {
-
-
     const name = form.value.name;
     const website = form.value.website;
     const bed = form.value.bed;
@@ -124,10 +103,32 @@ export class bedBookingDialog {
       'bed': bed
     };
     console.log("form -->", body)
+    // bookBed
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  bookHospital(){
+    console.log(this.BookBedObj ,"<----")
+    console.log("book this hos[pital")
+    // this.toastr.success("successfully bed book")
+    // this.toastr.success("Successfully Updated ! " , "Success!");
+    // this.toast.success("I'm a toast!", "Success!");
+    this.bedBook()
+    
+    
+  }
+
+  bedBook() {
+    this.api.bookBed(this.BookBedObj).subscribe(
+      (response: any) => {
+        console.log("response -->" , response)
+        // this.hospitals = response['Hospitals'];
+        this.onNoClick()
+      }, error => {
+      })
+
   }
 
 }

@@ -12,74 +12,84 @@ import { $ } from 'protractor';
 // import { environment } from 'environments/environment';
 
 const contentType = {
-    json: "application/json",
-    file: "multipart/form-data"
+  json: "application/json",
+  file: "multipart/form-data"
 }
-const requestConfig = { headers: {  "Content-Type": "application/json" } };
+const requestConfig = { headers: { "Content-Type": "application/json" } };
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
 export class ApiService {
-    private baseUrl: string = "http://localhost:5000/public/";
+  private baseUrl: string = "http://localhost:5000/public/";
 
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-    /**
-     * Get dashboards
-     */
-    // getAllHospital() {
-    //     return this.http.get(this.baseUrl + 'getAllDashboard', ).map((res: Response) => res)
-        
-    // }
+  /**
+   * Get dashboards
+   */
+  // getAllHospital() {
+  //     return this.http.get(this.baseUrl + 'getAllDashboard', ).map((res: Response) => res)
 
-    getAllHospital() {
-        requestConfig.headers['Content-Type'] = contentType.json;
-        return this.http.get(this.baseUrl + 'hospital')
-      }
+  // }
 
-      addHospital(data : any) {
-        requestConfig.headers['Content-Type'] = contentType.json;
-        return this.http.post(this.baseUrl + 'hospital' , data , requestConfig)
-      }
-      editHospital() {
-        requestConfig.headers['Content-Type'] = contentType.json;
-        return this.http.get(this.baseUrl + 'hospital' , requestConfig)
-      }
+  getAllHospital() {
+    console.log("get all hospitalsss")
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.get(this.baseUrl + 'hospital')
+  }
 
-      deleteHospital(data : any) {
-        requestConfig.headers['Content-Type'] = contentType.json ;
-        return this.http.delete(this.baseUrl + 'hospital?id='+data )
-      }
+  addHospital(data: any) {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.post(this.baseUrl + 'hospital', data, requestConfig)
+  }
+  editHospital() {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.get(this.baseUrl + 'hospital', requestConfig)
+  }
 
-    // async getLiberateHoldDataList(groupId) {
-    //     requestConfig.headers['Content-Type'] = contentType.json;
-    //     return Promise.resolve(cjfSaswebApi.get(`hold/request/getHoldDetailsByGroupId/` + groupId));
-    //     // return Promise.resolve(axios.get(`${baseUrl}/hold/request/getHoldDetailsByGroupId/` + groupId, requestConfig));
-    // }
+  deleteHospital(data: any) {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.delete(this.baseUrl + 'hospital?id=' + data)
+  }
 
-    // signin(data: any) {
-    
-    //     const body = new URLSearchParams();
-    //     body.append('email', data.email);
-    //     body.append('password', data.password);
-    //     // return this.http.post(this.BaseUrl + 'account/login/',this.httpService.login
-    //     return this.http.post(this.global.serverUrl + this.httpService.login,
-    //     body.toString(),
-    //     {headers: this.global.urlHeaders} )
-    //     .map(
-    //         (response: Response) => {
-    //            const output = response.json();
-    //            return output;
-    //         }
-    //     ).catch(
-    //         (error: Response) => {
-    //             return Observable.throw('Something went wrong');
-    //         }
-    //     );
-    //    }
+  bookBed(data: any) {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.post(this.baseUrl + 'booking', data, requestConfig)
+  }
+
+  bookCylinder(data: any) {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.post(this.baseUrl + 'company', data, requestConfig)
+  }
+
+  getCylinder(data: any) {
+    requestConfig.headers['Content-Type'] = contentType.json;
+    return this.http.get(this.baseUrl + 'company')
+  }
+
+  // signin(data: any) {
+
+  //     const body = new URLSearchParams();
+  //     body.append('email', data.email);
+  //     body.append('password', data.password);
+  //     // return this.http.post(this.BaseUrl + 'account/login/',this.httpService.login
+  //     return this.http.post(this.global.serverUrl + this.httpService.login,
+  //     body.toString(),
+  //     {headers: this.global.urlHeaders} )
+  //     .map(
+  //         (response: Response) => {
+  //            const output = response.json();
+  //            return output;
+  //         }
+  //     ).catch(
+  //         (error: Response) => {
+  //             return Observable.throw('Something went wrong');
+  //         }
+  //     );
+  //    }
 
 }
